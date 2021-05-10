@@ -11,12 +11,12 @@ import reducers from './reducers';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider state={createStore(reducers, {})}>
+    <Provider store={createStore(reducers, {})}>
       <Router>
-          <App>
-            <Route path="/" exact component={Welcome} />
-            <Route path="/signup" component={Signup} />
-          </App>
+        <App>
+          <Route path="/" exact component={Welcome} />
+          <Route path="/signup" component={Signup} />
+        </App>
       </Router>
     </Provider>
   </React.StrictMode>,
