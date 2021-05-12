@@ -1,13 +1,18 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../actions';
+import { useHistory } from 'react-router-dom';
 
 const Signup = ({ handleSubmit }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const errorMessage = useSelector(state => state.auth.errorMessage);
 
   const handleSubmitForm = formProps => {
-    dispatch(actions.signup(formProps));
+    dispatch(actions.signup(formProps, () => {
+      history.push('/feature');
+    }));
   };
 
   return (
@@ -30,6 +35,7 @@ const Signup = ({ handleSubmit }) => {
           autoComplete="none"
         />
       </fieldset>
+      <div>{errorMessage}</div>
       <button>Sign up</button>
     </form>
   );
